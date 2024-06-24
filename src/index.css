@@ -17,3 +17,8 @@ body {
   color: #fff;
   font-family: "Pretendard-Regular", sans-serif;
 }
+
+.align_center {
+  display: flex;
+  align-items: center;
+}
