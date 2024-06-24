@@ -1,5 +1,6 @@
 import "./MovieList.css";
 import Fire from "../../assets/fire.png";
+import MovieCard from "./MovieCard";
 
 export default function MovieList() {
   return (
@@ -28,7 +29,9 @@ export default function MovieList() {
         </div>
       </header>
 
-      <div className="movie_cards"></div>
+      <div className="movie_cards">
+        <MovieCard />
+      </div>
     </section>
   );
 }
