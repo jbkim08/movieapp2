@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import _ from "lodash";
 
-export default function MovieList() {
+export default function MovieList({ type, title, emoji }) {
   const [movies, setMovies] = useState([]);
   const [filterMovies, setFilterMovies] = useState([]); //필터링한 영화데이터
   const [minRating, setMinRating] = useState(0); //평점
@@ -15,7 +15,7 @@ export default function MovieList() {
   });
   const fetchMovies = async () => {
     const response = await fetch(
-      "https://api.themoviedb.org/3/movie/popular?api_key=a052248bc1c540aa3eb5e214e2efd1cc&language=ko"
+      `https://api.themoviedb.org/3/movie/${type}?api_key=a052248bc1c540aa3eb5e214e2efd1cc&language=ko`
     );
     const data = await response.json();
     setMovies(data.results);
@@ -49,10 +49,10 @@ export default function MovieList() {
     }
   }, [sort]);
   return (
-    <section className="movie_list">
+    <section className="movie_list" id={`${type}`}>
       <header className="align_center movie_list_header">
         <h2 className="align_center movie_list_heading">
-          인기순 <img src={Fire} alt="fire emoji" className="navbar_emoji" />
+          {title} <img src={emoji} alt="fire emoji" className="navbar_emoji" />
         </h2>
 
         <div className="align_center movie_list_fs">
