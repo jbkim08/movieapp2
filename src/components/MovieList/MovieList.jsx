@@ -17,10 +17,15 @@ export default function MovieList() {
     setFilterMovies(data.results); //처음엔 모든 영화를 입력
   };
   const handleFilter = (rate) => {
-    setMinRating(rate); //평점을 업데이트
-    //필터함수로 영화평점이 지정한 평점보다 높은 경우에만 남김
-    const filtered = movies.filter((movie) => movie.vote_average >= rate);
-    setFilterMovies(filtered);
+    if (minRating === rate) {
+      setMinRating(0); //평점을 0점 이상으로
+      setFilterMovies(movies); // 처음으로 되돌림(모든 영화)
+    } else {
+      setMinRating(rate); //평점을 업데이트
+      //필터함수로 영화평점이 지정한 평점보다 높은 경우에만 남김
+      const filtered = movies.filter((movie) => movie.vote_average >= rate);
+      setFilterMovies(filtered);
+    }
   };
   //시작시 한번 영화를 불러옴
   useEffect(() => {
@@ -37,14 +42,32 @@ export default function MovieList() {
           <ul className="align_center movie_filter">
             <li
               onClick={() => handleFilter(8)}
-              className="movie_filter_item active"
+              className={
+                minRating === 8
+                  ? "movie_filter_item active"
+                  : "movie_filter_item"
+              }
             >
               8+ Star
             </li>
-            <li onClick={() => handleFilter(7)} className="movie_filter_item">
+            <li
+              onClick={() => handleFilter(7)}
+              className={
+                minRating === 7
+                  ? "movie_filter_item active"
+                  : "movie_filter_item"
+              }
+            >
               7+ Star
             </li>
-            <li onClick={() => handleFilter(6)} className="movie_filter_item">
+            <li
+              onClick={() => handleFilter(6)}
+              className={
+                minRating === 6
+                  ? "movie_filter_item active"
+                  : "movie_filter_item"
+              }
+            >
               6+ Star
             </li>
           </ul>
