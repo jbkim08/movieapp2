@@ -3,7 +3,11 @@ import Star from "../../assets/star.png";
 
 export default function MovieCard({ movie }) {
   return (
-    <a className="movie_card">
+    <a
+      href={`https://www.themoviedb.org/movie/${movie.id}?language=ko`}
+      target="_blank"
+      className="movie_card"
+    >
       <img
         src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
         alt="movie poster"
